@@ -456,7 +456,7 @@ body .container .MyTasks .Output .Output__description .Options .checkbox input {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 15% auto;
+  margin: 5% auto;
   width: 80%;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;

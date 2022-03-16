@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <title>Todo List</title>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1>To-Do Application</h1>
+            <h3>Learning the Basics of the IndexedDB API!</h2>
+        </div>
+        <div class="body">
+            <h2 class="h2">Create a New Task</h2>
+            <div class="Submit__container">
+                <div class="Submit__title Submit__wrapper">
+                    <span>Title*</span>
+                    <input type="text" class="text Input-title" placeholder="Learn How to Use the IndexedDB API">
+                </div>
+                <div class="Submit__deadline Submit__wrapper">
+                    <span>Deadline</span>
+                    <input type="date" class="text Input-date">
+                </div>
+                <div class="Submit__description Submit__wrapper">
+                    <span>Description</span>
+                    <textarea  class="text Input-description" placeholder="Finish reading the tutorial and leave feedback!"></textarea>
+                </div>
+            </div>
+            <h4>* indicates a required field</h4>
+            <div class="Actions">
+                <button class="Create">Create</button>
+                <button class="Reset">Reset</button>
+            </div>
+        </div>
+        <div class="MyTasks">
+            <h2 class="h2">My Tasks</h2>
+            <div class="Output">
+            </div>
+        </div>
+    </div>
+    <div class="modal">
+        <div class="modalContent">
+            <button class="modalClose">x</button>
+            <div class="Submit__wrapper">
+                <span>Title</span>
+                <input type="text" class="text editTitle">
+            </div>
+            <div class="Submit__wrapper ">
+                <span>Description</span>
+                <textarea  class="text editDescription" ></textarea>
+            </div>
+            <div class="Submit__wrapper">
+                <span>Deadline</span>
+                <input type="date" class="text editDate">
+            </div>
+            <div class="modalOptions">
+                <label class="modalCheckbox">
+                    <input type="checkbox">   Done
+                </label>
+                <button class="Change">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

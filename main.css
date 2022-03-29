@@ -422,17 +422,18 @@ body .container .MyTasks .Output .Output__description .Options .Edit:hover {
   color: #363636;
 }
 
-body .container .MyTasks .Output .Output__description .Options .checkbox {
+body .container .MyTasks .Output .Output__description .Options input {
+  cursor: pointer;
   margin-left: 1rem;
+  margin-right: 0.3rem;
+}
+
+body .container .MyTasks .Output .Output__description .Options .checkbox {
   cursor: pointer;
 }
 
 body .container .MyTasks .Output .Output__description .Options .checkbox:hover {
   color: #363636;
-}
-
-body .container .MyTasks .Output .Output__description .Options .checkbox input {
-  cursor: pointer;
 }
 
 .modal {
@@ -443,7 +444,7 @@ body .container .MyTasks .Output .Output__description .Options .checkbox input {
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1;
+  z-index: 0;
 }
 
 .modal .modalContent {

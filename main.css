@@ -307,11 +307,15 @@ body .container .MyTasks .Output {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: #ebfffc;
+  background-color: #fff;
   margin-top: 1.5rem;
   border-radius: 4px;
   overflow: hidden;
   font-size: 16px;
+}
+
+body .container .MyTasks .Output .taskTodo {
+  margin-bottom: 1rem;
 }
 
 body .container .MyTasks .Output .Output__name {
@@ -382,6 +386,7 @@ body .container .MyTasks .Output .Output__description {
           justify-content: space-between;
   color: #00947e;
   border-color: #00d1b2;
+  background-color: #ebfffc;
 }
 
 body .container .MyTasks .Output .Output__description .Options {

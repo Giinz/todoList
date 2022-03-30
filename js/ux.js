@@ -72,12 +72,13 @@ function checked(title){
             outputDescriptionText.style.textDecoration = 'line-through';
             outputDescription.style.backgroundColor = 'fafafa';
         }
-        else{
+        else if(item.id===title && isChecked == false){
             outputName.style.backgroundColor = '#00d1b2';
             outputDescriptionText.style.textDecoration = 'none';
             outputTitle.style.textDecoration = 'none';
             outputDescription.style.backgroundColor = 'ebfffc';
         }
+        return
     })
 }
 function edit(idValue){
@@ -87,7 +88,8 @@ function edit(idValue){
             editTitle.value = item.title;
             editDescription.value= item.description;
             editDate.value = item.date;
-            modalChange.setAttribute('onclick',`editChange(${item.id})`)
+            modalChange.setAttribute('onclick',`editChange(${item.id})`);
+            modalCheckbox.checked = false;
         }
     })
 }
@@ -99,7 +101,7 @@ function editChange(e){
                   outputDate = document.querySelector(`#Name-${item.id}>.Date>span`),
                   outputDescription = document.querySelector(`#Description-${item.id}`),
                   outputDescriptionText = outputDescription.querySelector('p'),
-                  outputCheckbox = outputDescription.querySelector('input[type="checkbox"]');
+                  outputCheckbox = document.querySelector(`label[onchange="checked(${item.id})"]>input`);
             item.title = editTitle.value;
             item.description = editDescription.value;
             item.date = editDate.value;
@@ -107,7 +109,9 @@ function editChange(e){
             outputDate.innerHTML = 'Deadline: ' + item.date;
             outputDescriptionText.innerHTML = item.description;
             editModal.style.display = 'none';
-            modalCheckbox.checked == true ? outputCheckbox.checked == true : false;
+            modalCheckbox.checked == true ? outputCheckbox.checked = true : outputCheckbox.checked = false;
+            checked(e);
+            console.log(modalCheckbox.checked, outputCheckbox.checked   )
         }
     })
 };

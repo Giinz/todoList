@@ -47,10 +47,26 @@ function render(){
         output.appendChild(taskTodo)})
     }
 function deleteTask(e){
+    data.forEach(item =>{
+        const deleteBtn = document.querySelector(`button[onclick = "deleteTask(${item.id})"]`)
+        if(item.id === e){
+            closeTask.style.display = 'flex'
+            closePopupBtn.setAttribute('onclick','closePopup()');
+            cancelDeleteTask.setAttribute('onclick','closePopup()');
+            confirmDeleteTask.setAttribute('onclick', `confirmDelete(${item.id})`)
+        }
+    })
     let indexID = data.findIndex(key => key.id === e);
-    console.log(indexID)
+    render();
+}
+function confirmDelete(e){
+    let indexID = data.findIndex(key => key.id === e);
     data.splice(indexID,1);
     render();
+    closePopup()
+}
+function closePopup(e){
+    closeTask.style.display = 'none';
 }
 resetButton.onclick = function(){
     titleInput.value = '';
@@ -83,13 +99,14 @@ function checked(title){
 }
 function edit(idValue){
     data.forEach(item=>{
+        const outputCheckbox = document.querySelector(`label[onchange="checked(${item.id})"]>input`);
         if(item.id === idValue){
             editModal.style.display = 'block' ;
             editTitle.value = item.title;
             editDescription.value= item.description;
             editDate.value = item.date;
             modalChange.setAttribute('onclick',`editChange(${item.id})`);
-            modalCheckbox.checked = false;
+                modalCheckbox.checked = outputCheckbox.checked;
         }
     })
 }

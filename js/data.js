@@ -12,3 +12,7 @@ const editModal = document.querySelector('.modal'),
       modalCheckbox = document.querySelector('.modalCheckbox>input'),
       modalChange = document.querySelector('.Change'),
       modalContent = document.querySelector('.modalContent');
+const closeTask = document.querySelector('.closeTask__modal'),
+      closePopupBtn = document.querySelector('.closePopup'),
+      cancelDeleteTask = document.querySelector('.cancel'),
+      confirmDeleteTask = document.querySelector('.OK');

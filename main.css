@@ -549,4 +549,101 @@ body .container .MyTasks .Output .Output__description .Options .checkbox:hover {
 .modalClose:hover {
   background-color: rgba(10, 10, 10, 0.3);
 }
+
+.closeTask__modal {
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 1;
+}
+
+.closeTask {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 500px;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  margin: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #cc0f35;
+  border-radius: 8px;
+  border: 1px solid #b8b1b1;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.closeTask .closeTask__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #cccaca;
+}
+
+.closeTask .closeTask__item h4 {
+  color: #363636;
+  font-weight: 400;
+}
+
+.closeTask .closeTask__item .closePopup {
+  color: #888;
+  font-weight: 600;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.closeTask .closeTask__item:last-child {
+  background-color: #e9e0e0;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.closeTask .closeTask__item:last-child .btnConfirm {
+  padding: 4px 10px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 4px;
+  -webkit-box-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.closeTask .closeTask__item:last-child .btnConfirm:hover {
+  opacity: 0.8;
+}
+
+.closeTask .closeTask__item:last-child .OK {
+  background-color: #428aff;
+  font-weight: 600;
+  color: #fff;
+}
 /*# sourceMappingURL=main.css.map */

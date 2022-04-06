@@ -347,6 +347,13 @@ body .container .MyTasks .Output .Output__name .Date {
       -ms-flex-align: center;
           align-items: center;
   line-height: 1.25;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+body .container .MyTasks .Output .Output__name .Date span {
+  margin-right: 0.5rem;
 }
 
 body .container .MyTasks .Output .Output__name .Date .selectTask {

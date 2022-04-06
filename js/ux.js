@@ -12,7 +12,9 @@ createTask.addEventListener('click', function(){
         title: taskTitle,
         date: taskDate,
         description: taskDescription,
-        id: i++
+        id: i++,
+        isDone: false,
+        isSelected: false
     }
     data.push(taskData);
     render();
@@ -24,31 +26,54 @@ createTask.addEventListener('click', function(){
 function render(){
     output.innerHTML = '';
     data.map(item => {
-        const taskTodo = document.createElement('div');
-        taskTodo.classList.add('taskTodo');
-        taskTodo.innerHTML = 
-        `<div class = "Output__name" id= "Name-${item.id}">
-            <p> ${item.title}</p>
-            <div class="Date">
-            <span>Deadline: ${item.date}</span>
-            <button class = "Delete" onclick = "deleteTask(${item.id})">X</button>
+        
+        output.innerHTML += 
+        `<div class="taskTodo taskTodo-${item.id}">
+            <div class = "Output__name" id= "Name-${item.id}">
+                <p> ${item.title}</p>
+                <div class="Date">
+                    <span>${item.date}</span>
+                    Select<input type="checkbox" ${item.isSelected?"checked":''} class = 'selectTask' onchange = 'selected(${item.id})'>
+                    <button class = "Delete" onclick = "deleteTask(${item.id})">X</button>
+                </div>
             </div>
-        </div>
-        <div class="Output__description" id= "Description-${item.id}">
-            <p>${item.description}</p>
-            <div class="Options">
-                <button class="Edit" onclick = "edit(${item.id})">Edit</button>
-                <label class = "checkbox" onchange="checked(${item.id})">
-                    <input type="checkbox"> Done
-                </label>
+            <div class="Output__description" id= "Description-${item.id}">
+                <p>${item.description}</p>
+                <div class="Options">
+                    <button class="Edit" onclick = "edit(${item.id})">Edit</button>
+                    <label class = "checkbox" onchange="checked(${item.id})">
+                        <input type="checkbox" ${item.isDone ? 'checked' : ''}> Done
+                    </label>
+                </div>
             </div>
-        </div>
-        `
-        output.appendChild(taskTodo)})
+        </div>`;
+        const outputName = document.querySelector(`#Name-${item.id}`);
+        const outputTitle = outputName.querySelector('p'),
+              outputDescription = document.querySelector(`#Description-${item.id}`),
+              outputDescriptionText = outputDescription.querySelector('p');
+        if(item.isDone == true ){
+            outputName.style.backgroundColor = '#363636';
+            outputTitle.style.textDecoration = 'line-through';
+            outputDescriptionText.style.textDecoration = 'line-through';
+            outputDescription.style.backgroundColor = '#fafafa';
+        }
+        else {
+            outputName.style.backgroundColor = '#00d1b2';
+            outputDescriptionText.style.textDecoration = 'none';
+            outputTitle.style.textDecoration = 'none';
+            outputDescription.style.backgroundColor = '#ebfffc';
+        }
+        if(item.isSelected == true){
+            outputDescription.style.backgroundColor = '#a7f3e7';
+        }
+        else {
+            outputDescription.style.backgroundColor = '#ebfffc';
+        }
+        return
+    })
     }
 function deleteTask(e){
     data.forEach(item =>{
-        const deleteBtn = document.querySelector(`button[onclick = "deleteTask(${item.id})"]`)
         if(item.id === e){
             closeTask.style.display = 'flex'
             closePopupBtn.setAttribute('onclick','closePopup()');
@@ -56,24 +81,23 @@ function deleteTask(e){
             confirmDeleteTask.setAttribute('onclick', `confirmDelete(${item.id})`)
         }
     })
-    let indexID = data.findIndex(key => key.id === e);
-    render();
 }
 function confirmDelete(e){
     let indexID = data.findIndex(key => key.id === e);
     data.splice(indexID,1);
-    render();
+    const taskItem = document.querySelector(`.taskTodo-${e}`);
+    output.removeChild(taskItem)
     closePopup()
 }
 function closePopup(e){
     closeTask.style.display = 'none';
 }
+
 resetButton.onclick = function(){
     titleInput.value = '';
     dateInput.value = '';
     descriptionInput.value = '';
 }
-
 function checked(title){
     data.forEach(item=>{
         const outputName = document.querySelector(`#Name-${item.id}`);
@@ -82,13 +106,15 @@ function checked(title){
               checkboxDone = outputDescription.querySelector('input[type="checkbox"]'),
               outputDescriptionText = outputDescription.querySelector('p');
         let isChecked = checkboxDone.checked;
-        if(item.id === title && isChecked == true){
+        if(item.id === title && isChecked == true ){
+            item.isDone = true;
             outputName.style.backgroundColor = '#363636';
             outputTitle.style.textDecoration = 'line-through';
             outputDescriptionText.style.textDecoration = 'line-through';
             outputDescription.style.backgroundColor = 'fafafa';
         }
-        else if(item.id===title && isChecked == false){
+        else if(item.id===title && isChecked == false ){
+            item.isDone = false;
             outputName.style.backgroundColor = '#00d1b2';
             outputDescriptionText.style.textDecoration = 'none';
             outputTitle.style.textDecoration = 'none';
@@ -96,6 +122,7 @@ function checked(title){
         }
         return
     })
+
 }
 function edit(idValue){
     data.forEach(item=>{
@@ -126,9 +153,14 @@ function editChange(e){
             outputDate.innerHTML = 'Deadline: ' + item.date;
             outputDescriptionText.innerHTML = item.description;
             editModal.style.display = 'none';
-            modalCheckbox.checked == true ? outputCheckbox.checked = true : outputCheckbox.checked = false;
+            if(modalCheckbox.checked == true){
+                outputCheckbox.checked = true;
+                item.isDone == true;
+            } else{
+                outputCheckbox.checked = false;
+                item.isDone == false;
+            }
             checked(e);
-            console.log(modalCheckbox.checked, outputCheckbox.checked   )
         }
     })
 };
@@ -140,3 +172,35 @@ editModal.addEventListener('click',closeModal);
 modalContent.addEventListener('click',function(e){
     e.stopPropagation();
 });
+closeTask.addEventListener('click',closePopup)
+closeTaskContainer.addEventListener('click',function(e){
+    e.stopPropagation();
+});
+function selected(e){
+    data.forEach(item=>{
+        const outputName = document.querySelector(`#Name-${item.id}`);
+        const outputDescription = document.querySelector(`#Description-${item.id}`),
+ selectedTask = outputName.querySelector('.selectTask');
+        let selected = selectedTask.checked;
+        if(item.id === e && selected == true ){
+            item.isSelected = true;
+            outputDescription.style.backgroundColor = '#a7f3e7';
+        }
+        else if(item.id===e && selected == false ){
+            item.isSelected = false;
+            outputDescription.style.backgroundColor = '#ebfffc';
+
+        }
+        return
+    })
+}
+deleteSelectedTask.addEventListener('click',function(){
+    const selectedData = data.filter(function(item){
+        return item.isSelected == true
+    })
+    selectedData.forEach(f =>{
+        data.splice(data.findIndex(e=>e.isSelected == f.isSelected),1);
+    })
+    render()
+    console.log(data)
+})

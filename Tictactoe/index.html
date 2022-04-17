@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="data.js" defer></script>
+    <script src="ux.js" defer></script>
+    <link rel="stylesheet" href="main.css">
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+    <div class="container">
+        <div class="gameBoard">
+            <div class="playground">
+                <button class="gameButton" value="7" position = '(1,1)'></button>
+                <button class="gameButton" value="8" position = '(1,2)'></button>
+                <button class="gameButton" value="9" position = '(1,3)'></button>
+                <button class="gameButton" value="4" position = '(2,1)'></button>
+                <button class="gameButton" value="5" position = '(2,2)'></button>
+                <button class="gameButton" value="6" position = '(2,3)'></button>
+                <button class="gameButton" value="1" position = '(3,1)'></button>
+                <button class="gameButton" value="2" position = '(3,2)'></button>
+                <button class="gameButton" value="3" position = '(3,3)'></button>
+            </div>
+            <h1 class="Draw">Draw!</h1>
+            <h1 class="XWIN">"X" is winner!</h1>
+            <h1 class="CIRCLEWIN">"O" is winner!</h1>
+            <button class="resetButton">Reset game</button>
+        </div>
+        <div class="historyBoard">
+            <div>Next Player: X</div>
+            <div class="historyStep">
+                <span>1. <button>Go to game start (0,0)</button></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
